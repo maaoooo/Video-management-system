@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.maaoooo.dao.VideoMapper">
+<!--    //增加一个视频数据-->
+<!--    int addVideo(Video video);-->
+        <insert id="addVideo" parameterType="Video">
+            insert into videodata.video(videoname, episode, type, detail, score)
+            values(#{videoName},#{episode},#{type},#{detail},#{score})
+        </insert>
+<!--    //删除一个视频数据-->
+<!--    int deleteVideoById(int id);-->
+        <delete id="deleteVideoById" parameterType="int">
+            delete from videodata.video where id=#{id}
+        </delete>
+<!--    //更新一个视频数据-->
+<!--    int updateVideo(Video video);-->
+        <update id="updateVideo" parameterType="Video">
+            update videodata.video
+            set videoName=#{videoName},episode=#{episode},type=#{type},detail=#{detail},score=#{score}
+            where id=#{id}
+        </update>
+<!--    //查询一个视频数据-->
+<!--    Video queryVideoById(int id);-->
+        <select id="queryVideoById" parameterType="int" resultType="Video">
+            select * from videodata.video where id=#{id}
+        </select>
+<!--    //查询全部视频数据-->
+<!--    List<Video> queryAllVideo();-->
+        <select id="queryAllVideo" resultType="Video">
+            select * from videodata.video
+        </select>
+<!--    //模糊搜索-->
+    <!--    List<Video> queryByLikeName(@Param("videoName") String name);-->
+        <select id="queryByLikeName" parameterType="String" resultType="Video">
+            select * from videodata.video where videoName like concat('%',#{videoName},'%')
+        </select>
+
+</mapper>
