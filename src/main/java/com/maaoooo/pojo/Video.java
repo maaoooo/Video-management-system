@@ -18,5 +18,5 @@ public class Video {
     private int episode;
     private String type;
     private String detail;
-    private int score;
+    private float score;
 }
